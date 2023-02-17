@@ -2,7 +2,7 @@
 
 A dashboard for looking at exoplanet stuff from NASA's huge database.
 
-The dashboard itself can be found at [exo-dash-planets-0.vercel.app](https://exo-dash-planets-0.vercel.app).
+The dashboard itself can be found at [exo-dash-planets.vercel.app](https://exo-dash-planets-0.vercel.app).
 
 ## Architecture
 ```mermaid
