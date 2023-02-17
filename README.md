@@ -5,6 +5,15 @@ A dashboard for looking at exoplanet stuff from NASA's huge database.
 The dashboard itself can be found at [exo-dash-planets-0.vercel.app](https://exo-dash-planets-0.vercel.app).
 
 ## Architecture
+```mermaid
+flowchart LR
+    A[Client] -- Web Request --> B[Flask Server]
+    B -- Web Response --> A
+    B -- Data Query --> C[Database]
+    C -- Query Response --> B
+    D[Other server or python script or whatever \n that does the data scrapping and wrangling ] --> C
+    %%{init: {'theme':'neutral'}}%%
+ ```
 
 
 ## Development and Running Locally
