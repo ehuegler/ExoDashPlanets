@@ -1,3 +1,36 @@
 body {
-  color: cornflowerblue;
+  font-family: 'Nunito Sans', sans-serif;
+  min-height: 100vh;
+  background-color: whitesmoke;
+}
+
+header {
+  background-color: cornflowerblue;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+header h1 {
+  letter-spacing: 5vw;
+  font-weight: 600;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+footer {
+  background-color: cornflowerblue;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
