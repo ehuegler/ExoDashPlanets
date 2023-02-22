@@ -6,17 +6,6 @@ import os
 
 
 app = Flask(__name__)
-
-# establishing connection to database
-f = open("../.dbase_conn.json")
-conn = json.load(f); f.close();
-connection = psycopg2.connect(user=conn['User'],
-                                password=conn['Password'],
-                                host=conn['Host'],
-                                port=conn['Port'],
-                                database=conn['Database'])
-cursor = connection.cursor()
-
             
 
 """
@@ -26,6 +15,21 @@ Its necessary since you gotta be careful about API keys in code that might
 eventually be part of a public repo
 """
 load_dotenv()
+db_user = os.environ.get('DB_USER')
+db_pswrd = os.environ.get('DB_PSWRD')
+db_host = os.environ.get('DB_HOST')
+db_port = os.environ.get('DB_PORT')
+db_database = os.environ.get('DB_DATABASE')
+
+
+# establishing connection to database
+connection = psycopg2.connect(user=db_user,
+                                password=db_pswrd,
+                                host=db_host,
+                                port=db_port,
+                                database=db_database)
+cursor = connection.cursor()
+
 
 
 
