@@ -1,13 +1,25 @@
 {% set title='Exoplanet Dashboard' %}
+{% set homepage = True %}
 {% include 'inc/header.html' %}
+
+<header>
+  <div>
+    <div class="counter">
+      {{num_planets['num_planets']}}
+      <p>
+        confirmed
+      </p>
+    </div>
+  </div>
+  <h1>
+    Exoplanets
+  </h1>
+</header>
 
 <main>
   <h2>
     This is our exoplanet dashboard!
   </h2>
-  <p>
-    {% print(num_planets) %}
-  </p>
 </main>
 
 {% include 'inc/footer.html' %}
