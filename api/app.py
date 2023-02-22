@@ -43,7 +43,7 @@ pattern to associate that function to a url that a user might go to (routes are 
 """
 @app.route('/')
 def index():
-    return render_template('index.html', data=num_planets())
+    return render_template('index.html', num_planets=num_planets())
 
 
 @app.route('/favicon.ico')
