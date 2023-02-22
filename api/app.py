@@ -109,8 +109,7 @@ def avg_mass_planet_e():
     stat = {}
 
     cursor.execute("""select avg(pl_bmasse)
-                      from exo_raw
-                      where pl_bmassprov = 'Mass'""")
+                      from exo_raw""")
     result = cursor.fetchone()[0]
 
     stat['avg_mass_planet_e'] = result
