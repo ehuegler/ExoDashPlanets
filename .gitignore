@@ -2,8 +2,9 @@
 *.log
 *.pyc
 __pycache__
-dbase_conn.json
+.dbase_conn.json
 .DS_Store
+api/test.ipynb
 
 # Environments 
 .env 
