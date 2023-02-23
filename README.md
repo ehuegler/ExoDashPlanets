@@ -1,7 +1,7 @@
 # ExoDashPlanets
 
 A dashboard for looking at exoplanet statistics via [NASA's Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu)
-Specifically, the dashboard will be grabbing from NASA's list of confirmed exoplanets, available [here](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS).
+Specifically, the dashboard will be grabbing from NASA's list of confirmed exoplanets, available [here](https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars).
 
 
 The dashboard itself can be found at [exo-dash-planets.vercel.app](https://exo-dash-planets-0.vercel.app).
