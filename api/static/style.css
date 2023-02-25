@@ -9,11 +9,14 @@ header {
   color: white;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 header h1 {
   letter-spacing: 5vw;
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 main {
@@ -33,4 +36,29 @@ footer {
   justify-content: center;
   text-align: center;
   padding: 20px;
+}
+
+.counter {
+  font-size: 120px;
+  padding: 40px 0;
+}
+
+.counter p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.counter::before {
+  content: '\2022';
+  animation: green_flash 1s alternate-reverse infinite cubic-bezier(.75,0,.71,1);
+}
+
+@keyframes green_flash {
+  from {
+    color: white;
+  }
+
+  to {
+    color: #98f097;
+  }
 }
