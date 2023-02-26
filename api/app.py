@@ -23,12 +23,13 @@ db_database = os.environ.get('DB_DATABASE')
 
 
 # establishing connection to database
-connection = psycopg2.connect(user=db_user,
-                                password=db_pswrd,
-                                host=db_host,
-                                port=db_port,
-                                database=db_database)
-cursor = connection.cursor()
+def get_bd_connection():
+    connection = psycopg2.connect(user=db_user,
+                                    password=db_pswrd,
+                                    host=db_host,
+                                    port=db_port,
+                                    database=db_database)
+    return connection
 
 
 
@@ -65,6 +66,9 @@ to return dictionaries which it will latter convert to JSON objects
 # Total number of verified exoplanets
 @app.route('/api/stat/num_planets')
 def num_planets():
+    conn = get_bd_connection()
+    cursor = conn.cursor()
+    
     stat = {}
     
     cursor.execute("""SELECT Count(*) FROM exo_raw""")
@@ -72,11 +76,16 @@ def num_planets():
 
     stat['num_planets'] = result
     
+    cursor.close()
+    conn.close()
     return stat
 
 # Total number of solar systems with verified exoplanets
 @app.route('/api/stat/num_systems')
 def num_systems():
+    conn = get_bd_connection()
+    cursor = conn.cursor()
+    
     stat = {}
     
     cursor.execute("""SELECT Count(DISTINCT hostname) FROM exo_raw""")
@@ -84,11 +93,16 @@ def num_systems():
 
     stat['num_systems'] = result
     
+    cursor.close()
+    conn.close()
     return stat
 
 # Average number of planets per system
 @app.route('/api/stat/avg_num_planets')
 def avg_num_planets():
+    conn = get_bd_connection()
+    cursor = conn.cursor()
+    
     stat = {}
 
     cursor.execute("""With pl_per_host as (
@@ -103,6 +117,8 @@ def avg_num_planets():
     result = float(cursor.fetchone()[0])
     stat['avg_num_planets'] = result
 
+    cursor.close()
+    conn.close()
     return stat
 
 # Average mass of planets in Earth masse's reported as mass. 
@@ -110,6 +126,9 @@ def avg_num_planets():
 # mass*sin(inc)/sin(inc), or as a mass to radius ratio
 @app.route('/api/stat/avg_mass_planet_e')
 def avg_mass_planet_e():
+    conn = get_bd_connection()
+    cursor = conn.cursor()
+    
     stat = {}
 
     cursor.execute("""select avg(pl_bmasse)
@@ -118,6 +137,8 @@ def avg_mass_planet_e():
 
     stat['avg_mass_planet_e'] = result
 
+    cursor.close()
+    conn.close()
     return stat
 
 
@@ -128,6 +149,9 @@ def avg_mass_planet_e():
 # Y being the list of the frequency each method was used to discover the verified exoplanets
 @app.route('/api/vis/discovery_methods_bar')
 def detection_methods_bar():
+    conn = get_bd_connection()
+    cursor = conn.cursor()
+    
     vis = {}
 
     cursor.execute("""select DISTINCT discoverymethod, count(discoverymethod)
@@ -140,6 +164,8 @@ def detection_methods_bar():
     vis['X'] = X
     vis['Y'] = Y
 
+    cursor.close()
+    conn.close()
     return vis
     
 
