@@ -28,6 +28,11 @@ main {
   padding: 20px;
 }
 
+.chart {
+  margin: 0px auto;
+  width: 60vw;
+}
+
 footer {
   background-color: cornflowerblue;
   color: white;
