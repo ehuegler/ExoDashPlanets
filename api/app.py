@@ -141,6 +141,23 @@ def avg_mass_planet_e():
     conn.close()
     return stat
 
+# Average mass of the Stars that contain an Exoplanet
+# Reported in Stellar units(1 = Mass of the Sun)
+@app.route('/api/stat/avg_mass_star')
+def avg_mass_star():
+    conn = get_bd_connection()
+    cursor = conn.cursor()
+    stat = {}
+
+    cursor.execute("""Select avg(st_mass)
+                      from st_data""")
+    result = cursor.fetchone()[0]
+
+    stat['avg_mass_star'] = result
+    cursor.close()
+    conn.close()
+    return stat
+
 
 ################################################################
 ## Visualizations
