@@ -143,6 +143,7 @@ def avg_mass_planet_e():
 
 # Average mass of the Stars that contain an Exoplanet
 # Reported in Stellar units(1 = Mass of the Sun)
+# Adding this comment to create a new pull request
 @app.route('/api/stat/avg_mass_star')
 def avg_mass_star():
     conn = get_bd_connection()
