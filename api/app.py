@@ -1,11 +1,13 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from dotenv import load_dotenv
 import psycopg2
 import json
 import os
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
             
 
 """
@@ -183,8 +185,9 @@ def detection_methods_bar():
 
     cursor.close()
     conn.close()
-    return vis
-    
+    response = jsonify(vis) 
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 
 
