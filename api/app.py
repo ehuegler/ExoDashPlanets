@@ -215,9 +215,7 @@ def detection_methods_bar():
 
     cursor.close()
     conn.close()
-    response = jsonify(vis) 
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    return vis
 
 
 
