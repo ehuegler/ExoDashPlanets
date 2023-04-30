@@ -189,6 +189,36 @@ def detection_methods_bar():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
+@app.route('/api/vis/stellarType_bar')
+def detection_methods_bar():
+    conn = get_bd_connection()
+    cursor = conn.cursor()
+    
+    vis = {}
+
+    cursor.execute("""with st_type as (select left(upper(st_spectype), 1) as spectype
+                      from st_data
+                      where st_spectype is not NULL
+                      group by st_spectype)
+
+                      select spectype, count(*) 
+                      from st_type
+                      where spectype in ('O', 'B', 'A', 'F', 'G', 'K', 'M')
+                      group by spectype;
+                       """)
+    result = cursor.fetchall()
+    X = [row[0] for row in result]
+    Y = [row[1] for row in result]
+
+    vis['X'] = X
+    vis['Y'] = Y
+
+    cursor.close()
+    conn.close()
+    response = jsonify(vis) 
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
 
 
 
