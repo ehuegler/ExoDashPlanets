@@ -71,7 +71,7 @@ def num_planets():
     conn = get_bd_connection()
     cursor = conn.cursor()
     
-    stat = {}
+    stat = {"Title": "num_planets"}
     
     cursor.execute("""SELECT Count(*) FROM exo_raw""")
     result = cursor.fetchone()[0]
@@ -88,7 +88,7 @@ def num_systems():
     conn = get_bd_connection()
     cursor = conn.cursor()
     
-    stat = {}
+    stat = {"Title": "num_systems"}
     
     cursor.execute("""SELECT Count(DISTINCT hostname) FROM exo_raw""")
     result = cursor.fetchone()[0]
@@ -105,7 +105,7 @@ def avg_num_planets():
     conn = get_bd_connection()
     cursor = conn.cursor()
     
-    stat = {}
+    stat = {"Title": "avg_num_planets"}
 
     cursor.execute("""With pl_per_host as (
                         select hostname, count(pl_name) as pl_count
@@ -131,7 +131,7 @@ def avg_mass_planet_e():
     conn = get_bd_connection()
     cursor = conn.cursor()
     
-    stat = {}
+    stat = {"Title": "avg_mass_planet_e"}
 
     cursor.execute("""select avg(pl_bmasse)
                       from exo_raw""")
@@ -149,7 +149,7 @@ def avg_mass_planet_e():
 def avg_mass_star():
     conn = get_bd_connection()
     cursor = conn.cursor()
-    stat = {}
+    stat = {"Title": "avg_mass_star"}
 
     cursor.execute("""Select avg(st_mass)
                       from st_data""")
@@ -171,7 +171,7 @@ def detection_methods_bar():
     conn = get_bd_connection()
     cursor = conn.cursor()
     
-    vis = {}
+    vis = {"Title":"discovery_method"}
 
     cursor.execute("""select DISTINCT discoverymethod, count(discoverymethod)
                     from exo_raw
@@ -194,7 +194,7 @@ def stellar_type_bar():
     conn = get_bd_connection()
     cursor = conn.cursor()
     
-    vis = {}
+    vis = {"Title": "stellar_type"}
 
     cursor.execute("""with st_type as (select left(upper(st_spectype), 1) as spectype
                       from st_data
