@@ -141,6 +141,8 @@ def avg_mass_planet_e():
 
     cursor.close()
     conn.close()
+    response = jsonify(stat) 
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return stat
 
 # Average mass of the Stars that contain an Exoplanet
