@@ -187,12 +187,10 @@ def detection_methods_bar():
 
     cursor.close()
     conn.close()
-    response = jsonify(vis) 
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    return vis
 
-@app.route('/api/vis/stellar_type_bar')
-def stellar_type_bar():
+@app.route('/api/vis/stellar_type_pie')
+def stellar_type_line():
     conn = get_bd_connection()
     cursor = conn.cursor()
     
@@ -207,6 +205,29 @@ def stellar_type_bar():
                       from st_type
                       where spectype in ('O', 'B', 'A', 'F', 'G', 'K', 'M')
                       group by spectype;
+                       """)
+    result = cursor.fetchall()
+    X = [row[0] for row in result]
+    Y = [row[1] for row in result]
+
+    vis['X'] = X
+    vis['Y'] = Y
+
+    cursor.close()
+    conn.close()
+    return vis
+
+@app.route('/api/vis/disc_year_line')
+def disc_year_line():
+    conn = get_bd_connection()
+    cursor = conn.cursor()
+    
+    vis = {"Title": "disc_year"}
+
+    cursor.execute("""select disc_year, count(*)
+                    from disc_data
+                    group by disc_year
+                    order by disc_year
                        """)
     result = cursor.fetchall()
     X = [row[0] for row in result]
