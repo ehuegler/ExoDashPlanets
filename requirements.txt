@@ -8,5 +8,5 @@ psycopg2-binary==2.9.5
 pycodestyle==2.10.0
 python-dotenv==0.21.1
 tomli==2.0.1
-Werkzeug==2.2.3
+Werkzeug==3.0.1
 flask-cors==3.0.10
